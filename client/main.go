@@ -161,8 +161,9 @@ func (client *Client) clearDirectory([]string) error {
 				return err
 			}
 			time.Sleep(time.Second)
+		} else {
+			break
 		}
-		break
 	}
 	err = os.Mkdir(applicationDirectory, os.ModeDir)
 	return err
