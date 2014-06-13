@@ -127,8 +127,8 @@ public class UnityDeploy : EditorWindow {
 		//Instructions to build.  At bottom because otherwise it throws errors. (yup....)
 		GUILayout.Label("Build:", EditorStyles.boldLabel);
 		buildButton("Win", BuildTarget.StandaloneWindows, "win32", ".exe");
-		buildButton("OSX", BuildTarget.StandaloneOSXIntel, "mac32", ".app");
-		buildButton("Linux", BuildTarget.StandaloneLinux, "linux32", "");
+		//buildButton("OSX", BuildTarget.StandaloneOSXIntel, "mac32", ".app");
+		//buildButton("Linux", BuildTarget.StandaloneLinux, "linux32", "");
 
 	}
 
@@ -168,7 +168,9 @@ public class UnityDeploy : EditorWindow {
 				System.IO.Directory.CreateDirectory(appFolderLocation + "/" + folder + "/");
 			}
 
-			string errorMessage = BuildPipeline.BuildPlayer(null, appFolderLocation + "/" + folder + "/UnityDeployApplication" + extension, target, BuildOptions.None);
+			string[] levels = new string[0];
+
+			string errorMessage = BuildPipeline.BuildPlayer(levels, appFolderLocation + "/" + folder + "/UnityDeployApplication" + extension, target, BuildOptions.None);
 			if (errorMessage != ""){
 				Debug.LogError(errorMessage);
 			}
